@@ -1,7 +1,13 @@
 
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'CoinFlow - Your Modern Crypto Wallet',
+  description: 'The easiest and most secure way to manage your cryptocurrency portfolio. Buy, sell, and track your assets with confidence.',
+};
 
 export default function LandingPage() {
   return (
