@@ -1,0 +1,89 @@
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className="dark">
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <AppProvider>
+          <SidebarProvider>
+            <Sidebar>
+              <SidebarHeader className="p-4">
+                <div className="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-8 h-8 text-primary">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm-1-12h2v2h-2zm0 4h2v6h-2z" />
+                  </svg>
+                  <span className="text-xl font-semibold">CoinFlow</span>
+                </div>
+              </SidebarHeader>
+              <SidebarContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard" passHref>
+                      <SidebarMenuButton tooltip="Dashboard">
+                        <Home />
+                        <span>Dashboard</span>
+                      </SidebarMenuButton>
+                    </Link>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/portfolio" passHref>
+                      <SidebarMenuButton tooltip="Portfolio">
+                        <List />
+                        <span>Portfolio</span>
+                      </SidebarMenuButton>
+                    </Link>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/trade" passHref>
+                      <SidebarMenuButton tooltip="Trade">
+                        <LineChart />
+                        <span>Trade</span>
+                      </SidebarMenuButton>
+                    </Link>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/wallet" passHref>
+                      <SidebarMenuButton tooltip="Wallet">
+                        <Wallet />
+                        <span>Wallet</span>
+                      </SidebarMenuButton>
+                    </Link>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarContent>
+              <SidebarFooter className="p-4 flex flex-col gap-2">
+                 <SidebarMenu>
+                   <SidebarMenuItem>
+                    <SidebarMenuButton tooltip="Settings">
+                      <Cog />
+                      <span>Settings</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                   <SidebarMenuItem>
+                    <SidebarMenuButton tooltip="Profile">
+                      <CircleUserRound />
+                      <span>Profile</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                 </SidebarMenu>
+              </SidebarFooter>
+            </Sidebar>
+            <SidebarInset>
+              <header className="flex items-center justify-end p-4 h-16 border-b">
+                <SidebarTrigger className="md:hidden" />
+                <Button>Connect Wallet</Button>
+              </header>
+              <main className="flex-1 overflow-y-auto">
+                {children}
+              </main>
+              <Toaster />
+            </SidebarInset>
+          </SidebarProvider>
+        </AppProvider>
+      </body>
+    </html>
+  );
+}
