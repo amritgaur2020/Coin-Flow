@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -26,6 +27,8 @@ export default function DashboardPage() {
     }
   }, [availableCryptos, isClient]);
 
+  const isLoading = !isClient || !marketChanges;
+
   return (
     <div className="flex flex-col gap-8 p-4 md:p-8">
       <div className="flex justify-between items-start">
@@ -42,7 +45,11 @@ export default function DashboardPage() {
             <Wallet className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">${fiatBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            {isLoading ? (
+                <Skeleton className="h-10 w-3/4" />
+            ) : (
+                <p className="text-4xl font-bold">${fiatBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            )}
             <p className="text-xs text-muted-foreground">Available Fiat</p>
           </CardContent>
         </Card>
@@ -52,7 +59,11 @@ export default function DashboardPage() {
             <PieChart className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">${portfolioValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+             {isLoading ? (
+                <Skeleton className="h-10 w-3/4" />
+            ) : (
+                <p className="text-4xl font-bold">${portfolioValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            )}
             <p className="text-xs text-muted-foreground">Total Crypto Value</p>
           </CardContent>
         </Card>
@@ -81,7 +92,7 @@ export default function DashboardPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {!isClient || !marketChanges ? (
+              {isLoading ? (
                  availableCryptos.map((crypto) => (
                     <TableRow key={crypto.symbol}>
                         <TableCell>
@@ -98,7 +109,7 @@ export default function DashboardPage() {
                  ))
               ) : (
                 availableCryptos.map((crypto) => {
-                    const change = marketChanges[crypto.symbol] || 0;
+                    const change = marketChanges![crypto.symbol] || 0;
                     const isPositive = change >= 0;
                     return (
                     <TableRow key={crypto.symbol}>
