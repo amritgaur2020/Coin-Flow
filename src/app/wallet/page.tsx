@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -31,7 +32,8 @@ export default function WalletPage() {
     depositFiat(amount);
     toast({
       title: 'Deposit Successful',
-      description: `Successfully deposited $${amount}.`,
+      description: `Successfully deposited $${amount.toFixed(2)}.`,
+      variant: 'default',
     });
     setDepositAmount('');
   };
@@ -51,6 +53,7 @@ export default function WalletPage() {
       toast({
         title: 'Send Successful',
         description: `Successfully sent ${amount} ${selectedCrypto}.`,
+        variant: 'default',
       });
       setSendAmount('');
       setRecipientAddress('');
@@ -142,3 +145,4 @@ export default function WalletPage() {
     </div>
   );
 }
+
