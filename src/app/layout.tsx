@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'CoinFlow',
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} font-sans antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <AppProvider>
           <SidebarProvider>
             <Sidebar>
@@ -37,36 +37,36 @@ export default function RootLayout({
               <SidebarContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <Link href="/dashboard" passHref>
-                      <SidebarMenuButton tooltip="Dashboard">
+                    <SidebarMenuButton tooltip="Dashboard" asChild>
+                      <Link href="/dashboard">
                         <Home />
                         <span>Dashboard</span>
-                      </SidebarMenuButton>
-                    </Link>
+                      </Link>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <Link href="/portfolio" passHref>
-                      <SidebarMenuButton tooltip="Portfolio">
-                        <List />
-                        <span>Portfolio</span>
-                      </SidebarMenuButton>
-                    </Link>
+                     <SidebarMenuButton tooltip="Portfolio" asChild>
+                        <Link href="/portfolio">
+                          <List />
+                          <span>Portfolio</span>
+                        </Link>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <Link href="/trade" passHref>
-                      <SidebarMenuButton tooltip="Trade">
+                    <SidebarMenuButton tooltip="Trade" asChild>
+                      <Link href="/trade">
                         <LineChart />
                         <span>Trade</span>
-                      </SidebarMenuButton>
-                    </Link>
+                      </Link>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <Link href="/wallet" passHref>
-                      <SidebarMenuButton tooltip="Wallet">
+                    <SidebarMenuButton tooltip="Wallet" asChild>
+                      <Link href="/wallet">
                         <Wallet />
                         <span>Wallet</span>
-                      </SidebarMenuButton>
-                    </Link>
+                      </Link>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
               </SidebarContent>
