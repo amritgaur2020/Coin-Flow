@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -14,8 +15,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'CoinFlow',
-  description: 'Your Crypto Wallet',
+  title: {
+    template: '%s | CoinFlow',
+    default: 'CoinFlow - Your Crypto Wallet',
+  },
+  description: 'The easiest and most secure way to manage your cryptocurrency portfolio.',
 };
 
 export default function RootLayout({
@@ -25,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} dark`}>
-      <body className="antialiased">
+      <body>
         <AppProvider>
           <SidebarProvider>
             <Sidebar>
