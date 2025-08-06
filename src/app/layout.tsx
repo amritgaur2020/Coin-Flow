@@ -91,7 +91,7 @@ export default function RootLayout({
               </SidebarFooter>
             </Sidebar>
             <SidebarInset>
-              <header className="flex items-center justify-end p-4 h-16 border-b">
+              <header className="flex items-center justify-between p-4 h-16 border-b">
                 <SidebarTrigger className="md:hidden" />
                 <Button>Connect Wallet</Button>
               </header>
