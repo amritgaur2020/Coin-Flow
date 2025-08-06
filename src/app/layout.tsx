@@ -8,7 +8,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'CoinFlow',
@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} dark`}>
-      <body className={`font-sans antialiased`}>
+    <html lang="en" className="dark">
+      <body className={`${inter.className} font-sans antialiased`}>
         <AppProvider>
           <SidebarProvider>
             <Sidebar>
