@@ -1,6 +1,12 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { AlertTriangle } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '404 - Page Not Found',
+};
 
 export default function NotFound() {
   return (
