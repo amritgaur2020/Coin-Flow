@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -9,6 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useAppContext } from '@/context/AppContext';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowRightLeft, ShoppingCart } from 'lucide-react';
+import { Metadata } from 'next';
+
+// This is a client component, so we can't use `export const metadata`.
+// We can set the title dynamically in a useEffect hook if needed, or in the layout.
+// For now, we'll rely on the layout's title template.
 
 export default function TradePage() {
   const { availableCryptos, fiatBalance, buyCrypto } = useAppContext();
@@ -31,8 +37,8 @@ export default function TradePage() {
       buyCrypto(selectedCrypto, usdAmount);
       toast({
         title: "Purchase Successful",
-        description: `You have successfully purchased $${usdAmount} of ${selectedCrypto}.`,
-        variant: "default",
+        description: `You have successfully purchased $${usdAmount.toFixed(2)} of ${selectedCrypto}.`,
+        variant: "default", // 'default' is often styled as success or neutral
       });
       setAmount('');
     } catch (error: any) {
@@ -45,7 +51,7 @@ export default function TradePage() {
   };
   
   const selectedCryptoData = availableCryptos.find(c => c.symbol === selectedCrypto);
-  const cryptoAmount = (amount && selectedCryptoData) ? (parseFloat(amount) / selectedCryptoData.price).toFixed(8) : '0.00000000';
+  const cryptoAmount = (amount && selectedCryptoData && selectedCryptoData.price > 0) ? (parseFloat(amount) / selectedCryptoData.price).toFixed(8) : '0.00000000';
 
 
   return (
