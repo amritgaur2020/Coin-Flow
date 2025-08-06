@@ -1,3 +1,19 @@
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarContent, SidebarFooter } from '@/components/ui/sidebar';
+import { Home, List, LineChart, Wallet, Cog, CircleUserRound } from 'lucide-react';
+import { AppProvider } from '@/context/AppContext';
+import { Toaster } from '@/components/ui/toaster';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+
+export const metadata: Metadata = {
+  title: 'CoinFlow',
+  description: 'Your Crypto Wallet',
+};
 
 export default function RootLayout({
   children,
@@ -5,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" className={`${inter.variable} dark`}>
+      <body className={`font-sans antialiased`}>
         <AppProvider>
           <SidebarProvider>
             <Sidebar>
